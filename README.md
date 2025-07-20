@@ -127,3 +127,70 @@ public class Main {
 
     }
 }
+/* sort arr[0,3,4,0,3,0] --[3,4,3,0,0,0] 
+con 1. all element order are not change. 
+con 2. all zero is set at last index.
+ */
+ import java.util.*;
+ 
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[]arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        for(int i=0;i<n;i++) {
+            for (int j = i + 1; j < n - i - 1; j++) {
+                if (arr[j] == 0 && arr[j + 1] != 0) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+            for(int num : arr) {
+                System.out.print(num + " ");
+        }
+    }
+}
+
+
+
+/*Q. USING SLECTION SORT
+ sort string[mahi, kafi, rani, sonu, pinky] --[kafi, mahi, pinky, rani, sonu ]
+hint 1. a<b<...
+hint 2. comper character and id first char is same chack second char.
+ */
+
+ import java.util.*;
+ 
+public class Main {
+    static void sortString(String[] str) {
+        for (int i = 0; i < str.length - 1; i++) {
+            int max_idx = i;
+            for (int j = i + 1; j < str.length; j++) {
+                if (str[j].compareTo(str[max_idx]) < 0) {
+                    max_idx = j;
+                }
+            }
+            String temp = str[max_idx];
+            str[max_idx] = str[i];
+            str[i] = temp;
+        }
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        String[] str = new String[n];
+        for (int i = 0; i < n; i++) {
+            str[i] = sc.next();
+        }
+        sortString(str);
+        for (int i = 0; i < n; i++) {
+            System.out.print(str[i]+" ");
+        }
+
+    }
+}
