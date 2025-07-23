@@ -66,6 +66,31 @@ public class Main {
         System.out.println(Arrays.toString(arr));
     }
 }
+//STRING SORT 
+import java.util.Scanner;
+public class Recursion {
+    static String bubblesort(String s){
+        char[] arr=s.toCharArray();
+        for(int j=0;j< arr.length;j++) {
+            for (int i = j + 1; i < arr.length - 1; i++) {
+               if (arr[i] > arr[j]) {
+                   char temp=arr[j];
+                   arr[j]=arr[i];
+                   arr[i]=temp;
+               }
+                }
+            }
+        return String.valueOf(arr);
+
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        String result = bubblesort(s);
+        System.out.println(result);
+
+    }
+}
 //SLECTION SORT.
 
 import java.util.*;
