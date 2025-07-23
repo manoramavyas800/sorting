@@ -194,3 +194,58 @@ public class Main {
 
     }
 }
+//MARGSORT.
+
+import java.util.*;
+public class Main {
+    static void printArray(int[] arr){
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+  static void margsort(int[]arr,int l,int r){
+        if(l>=r)return;
+      int mid=(l+r)/2;
+      margsort(arr,l,mid);
+      margsort(arr,mid+1,r);
+      marged(arr,mid,l,r);
+  }
+  static void marged(int[]arr,int mid,int l,int r){
+      int n1=mid-l+1;
+      int n2=r-mid;
+      int[] left=new int[n1];
+      int[] right=new int[n2];
+      int i,j,k;
+      for(i=0;i<n1;i++)left[i]=arr[l+i];
+      for(i=0;i<n2;i++)right[i]=arr[mid+1+i];
+      i=0;
+      j=0;
+      k=l;
+      while(i<n1&&j<n2) {
+          if (left[i] <= right[j]) {
+              arr[k++] = left[i++];
+          } else {
+              arr[k++] = right[j++];
+          }
+      }
+          while(i<n1)
+              arr[k++]=left[i++];
+          while(j<n2)
+              arr[k++]=right[j++];
+
+  }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for(int i=0;i<n;i++){
+           arr[i] = sc.nextInt();
+        }
+        System.out.println("before sort");
+        printArray(arr);
+        margsort(arr,0,n-1);
+        System.out.println("after sort");
+        printArray(arr);
+    }
+}
