@@ -274,3 +274,59 @@ public class Main {
         printArray(arr);
     }
 }
+//QUICK SORT
+
+
+import java.util.*;
+
+public class Recursion{
+  static void printArray(int[] arr){
+      for(int i=0;i<arr.length;i++){
+          System.out.print(arr[i]+" ");
+      }
+      System.out.println();
+  }
+  static void swap(int[] arr,int i,int j){
+    int temp=arr[i];
+    arr[i]=arr[j];
+    arr[j]=temp;
+  }
+  static void quickSort(int[] arr,int l,int r){
+    if(l>=r) return;
+    int pi=partition(arr,l,r);
+    quickSort(arr,l,pi-1);
+    quickSort(arr,pi+1,r);
+  }
+  static int partition(int[] arr,int l,int r){
+      int pivot=arr[l];
+      int count=0;
+      for(int i=l+1;i<=r;i++) {
+          if (arr[i] <= pivot) {
+              count++;
+          }
+      }
+          int pivotIndex=l+count;
+     swap(arr,l,pivotIndex);
+     int i=l,j=r;
+     while(i<pivotIndex && j<pivotIndex){
+         while(arr[i]<=pivot)i++;
+         while(arr[j]>pivot)j--;
+         if(i<pivotIndex && j<pivotIndex){
+             swap(arr,i,j);
+             i++;
+             j--;
+         }
+     }
+     return pivotIndex;
+  }
+    public static void main(String[] args) {
+           Scanner sc = new Scanner(System.in);
+         int n = sc.nextInt();
+        int[] arr = new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        quickSort(arr,0,n-1);
+        printArray(arr);
+    }
+    }
