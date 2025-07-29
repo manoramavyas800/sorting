@@ -330,3 +330,49 @@ public class Recursion{
         printArray(arr);
     }
     }
+//COUNT SORT.
+
+
+import java.util.Scanner;
+public class Test{
+    static int findMax(int []arr){
+        int max=Integer.MIN_VALUE;
+        for (int j : arr) {
+            if (max < j) {
+                max = j;
+            }
+        }
+        return max;
+    }
+   static void countSort(int[] arr){
+      int max=findMax(arr);
+      int[] ans=new int[max+1];
+      for(int i=0;i<arr.length;i++){
+          ans[arr[i]]++;
+      }
+      int k=0;
+      for(int i=0;i<ans.length;i++){
+          for(int j=0;j<ans[i];j++){
+              arr[k++]=i;
+          }
+      }
+   }
+   static void printArray(int[] arr){
+       for (int j : arr) {
+           System.out.print(j + " ");
+       }
+       System.out.println();
+   }
+
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] nums = new int[n];
+        for(int i=0;i<n;i++){
+            nums[i]=sc.nextInt();
+        }
+        countSort(nums);
+        printArray(nums);
+    }
+}
