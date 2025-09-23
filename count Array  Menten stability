@@ -1,0 +1,22 @@
+   static void countSort2(int [] arr){
+        int n=arr.length;
+        int []output=new int[n];
+        int max=maxNum(arr);
+        //frequency arr
+        int[] count = new int[max+1];
+        for (int j : arr) {
+            count[j]++;
+        }
+        //prefix sum
+        for(int i=1;i<count.length;i++){
+            count[i]+=count[i-1];
+        }
+        //find idx
+        for(int i=n-1;i>=0;i--){
+            int idx=count[arr[i]]-1;
+            output[idx]=arr[i];
+            count[arr[i]]--;
+        }
+        //copy arr
+        System.arraycopy(output, 0, arr, 0, n);
+    }
