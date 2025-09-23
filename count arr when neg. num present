@@ -1,0 +1,24 @@
+   public  static int[] countArrayNeg(int[] arr) {
+        if (arr == null || arr.length == 0) {
+            return arr;
+        }
+        int max=arr[0];
+        int min=arr[0];
+        for(int i=0; i<arr.length; i++){
+            if(arr[i]>max)max=arr[i];
+            if(arr[i]<min)min=arr[i];
+        }
+        int range=max-min+1;
+        int[] count=new int[range];
+        //count arr
+        for (int value : arr) {
+            count[value-min]++;
+        }
+        int k=0;
+        for(int i=0; i<count.length; i++){
+            while(count[i]-->0){
+                arr[k++]=i+min;
+            }
+        }
+        return arr;
+    }
