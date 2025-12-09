@@ -1,0 +1,15 @@
+ static int[] cyclic(int[] arr){
+             int i=0;
+             int n=arr.length;
+             while(i<n){
+                 if(arr[i]==i)i++;
+                 else{
+                     int idx=arr[i];
+                     int temp=arr[i];
+                     arr[i]=arr[idx];
+                     arr[idx]=temp;
+
+                 }
+             }
+             return arr;
+    }
