@@ -1,0 +1,19 @@
+    static ArrayList<Integer> findDuplicates(int[] arr){
+        ArrayList<Integer> ans=new ArrayList<>();
+        int i=0;
+        while(i<arr.length){
+            int idx=arr[i]-1;
+            if(arr[i]==i+1||arr[i]==arr[idx])i++;
+            else{
+                int temp=arr[idx];
+                arr[idx]=arr[i];
+                arr[i]=temp;
+            }
+        }
+       for(i=0;i<arr.length;i++){
+           if(arr[i]!=i+1){
+               ans.add(arr[i]);
+           }
+       }
+        return ans;
+    }
