@@ -12,12 +12,12 @@ public class QuickSort {
     }
     static void quickSort(int[] arr,int st,int end) {
         if(st>=end)return;
-        int pivot=partition4(arr,st,end);
+        int pivot=partition6(arr,st,end);
         quickSort(arr,st,pivot-1);
         quickSort(arr,pivot+1,end);
     }
     static int partition(int[] arr,int st,int end) {
-        int pivot=arr[st];
+        int pivot=midOfThree(arr,st,end);
         int count=0;
         for(int i=st+1;i<=end;i++) {
             if (arr[i] <= pivot) {
@@ -93,6 +93,56 @@ public class QuickSort {
         swap(arr,i+1,end);
         return i+1;
     }
+    //pivot is at end of the array
+    static int partition5(int[] arr,int st,int end) {
+        int pivot=midOfThree(arr,st,end);
+        int count=0;
+        for(int i=st;i<end;i++) {
+            if (arr[i] <= pivot) {
+                count++;
+            }
+        }
+        int pivotIdx=st +count;
+        swap(arr,end,pivotIdx);
+        int i=st,j=end;
+        while(i<pivotIdx&&j>pivotIdx){
+            while(arr[i]<=arr[pivotIdx])i++;
+            while(arr[j]>arr[pivotIdx])j--;
+            if(i<pivotIdx&&j>pivotIdx){
+                swap(arr,i,j);
+            }
+        }
+
+        return pivotIdx;
+    }
+    static int partition6(int[] arr,int start,int end) {
+        Random rand=new Random();
+        int pivotI=start+rand.nextInt(end-start);
+        int temp=arr[pivotI];
+        arr[pivotI]=arr[end];
+        arr[end]=temp;
+
+        int pivot=arr[end];
+        int count=0;
+        for(int i=start;i<end;i++) {
+            if (arr[i] <= pivot) {
+                count++;
+            }
+        }
+        int pivotIdx=start +count;
+        swap(arr,end,pivotIdx);
+        int i=start,j=end;
+        while(i<pivotIdx&&j>pivotIdx){
+            while(arr[i]<=arr[pivotIdx])i++;
+            while(arr[j]>arr[pivotIdx])j--;
+            if(i<pivotIdx&&j>pivotIdx){
+                swap(arr,i,j);
+            }
+        }
+
+        return pivotIdx;
+    }
+
 
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
